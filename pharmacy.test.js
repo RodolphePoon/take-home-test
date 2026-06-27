@@ -67,6 +67,12 @@ describe("Pharmacy", () => {
       ).toEqual([new Drug("Fervex", 4, 6)]);
     }); 
 
+     it("should not increase the benefit above 50", () => {
+      expect(
+        new Pharmacy([new Drug("Fervex", 2, 50)]).updateBenefitValue(),
+      ).toEqual([new Drug("Fervex", 1, 50)]);
+    });
+
     it("should drop the benefit to 0 when expired", () => {
       expect(
         new Pharmacy([new Drug("Fervex", 0, 3)]).updateBenefitValue(),

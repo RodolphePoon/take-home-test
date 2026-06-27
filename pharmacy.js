@@ -2,6 +2,7 @@ export class Drug {
 
   static MAX_BENEFIT = 50;
   static MIN_BENEFIT = 0;
+  static BENEFIT_RATE = 1;
 
   constructor(name, expiresIn, benefit) {
     this.name = name;
@@ -38,29 +39,29 @@ export class Drug {
   updateDefault() {
 
     if (this.expiresIn < 0) {
-      this.benefit = Math.max(Drug.MIN_BENEFIT, this.benefit - 2);
+      this.benefit = Math.max(Drug.MIN_BENEFIT, this.benefit - 2*Drug.BENEFIT_RATE);
     } else {
-      this.benefit = Math.max(Drug.MIN_BENEFIT, this.benefit - 1);
+      this.benefit = Math.max(Drug.MIN_BENEFIT, this.benefit - Drug.BENEFIT_RATE);
     }
   }
 
   updateHerbalTea() {
     if (this.expiresIn < 0) {
-      this.benefit = Math.min(Drug.MAX_BENEFIT, this.benefit + 2);
+      this.benefit = Math.min(Drug.MAX_BENEFIT, this.benefit + 2*Drug.BENEFIT_RATE);
     } else {
-      this.benefit = Math.min(Drug.MAX_BENEFIT, this.benefit + 1);
+      this.benefit = Math.min(Drug.MAX_BENEFIT, this.benefit + Drug.BENEFIT_RATE);
     }
   }
 
   updateFervex() {
-    let benefit = 1
+    let benefit = Drug.BENEFIT_RATE
 
     if (this.expiresIn < 10) {
-      benefit += 1
+      benefit += Drug.BENEFIT_RATE
     }
 
     if (this.expiresIn < 5) {
-      benefit += 1
+      benefit += Drug.BENEFIT_RATE
     }
 
     this.benefit = Math.min(Drug.MAX_BENEFIT, this.benefit + benefit);
@@ -71,7 +72,7 @@ export class Drug {
   }
 
   updateDafalgan() {
-    this.benefit = Math.max(Drug.MIN_BENEFIT, this.benefit - 2);
+    this.benefit = Math.max(Drug.MIN_BENEFIT, this.benefit - 2*Drug.BENEFIT_RATE);
   }
 }
 

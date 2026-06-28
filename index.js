@@ -1,12 +1,12 @@
-import { Drug, Pharmacy } from "./pharmacy";
-
+import { Pharmacy } from "./pharmacy";
+import { DRUG_NAME, DrugFactory } from "./drug";
 import fs from "fs";
 
 const drugs = [
-  new Drug("Doliprane", 20, 30),
-  new Drug("Herbal Tea", 10, 5),
-  new Drug("Fervex", 12, 35),
-  new Drug("Magic Pill", 15, 40),
+  DrugFactory("Doliprane", 20, 30),
+  DrugFactory(DRUG_NAME.HERBAL_TEA, 10, 5),
+  DrugFactory(DRUG_NAME.FERVEX, 12, 35),
+  DrugFactory(DRUG_NAME.MAGIC_PILL, 15, 40),
 ];
 const pharmacy = new Pharmacy(drugs);
 
